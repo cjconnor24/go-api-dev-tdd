@@ -33,4 +33,9 @@ func TestCreateUser(t *testing.T) {
 	if createdUser.Password == oldPassword {
 		t.Error("password was not hashed")
 	}
+
+	err = pStore.DeleteUserByID(createdUser.ID)
+	if err != nil {
+		t.Errorf("expect nil error during DeleteUserID; got %d", err)
+	}
 }
